@@ -5,8 +5,10 @@ getRoutes()
 {
   return <String,WidgetBuilder>
   {
-    'login' : ( _ ) => LoginScreen(),
-    'home' : ( _ ) => HomeScreen(),
-    'product' : ( _ ) => ProductScreen()
+    'login'    : ( _ ) => const LoginScreen(),
+    'home'     : ( _ ) => const HomeScreen(),
+    'product'  : ( _ ) => const ProductScreen(),
+    'register' : ( _ ) => const RegisterScreen(),
+    'checking' : ( _ ) => const CheckAuthScreen()
   };
 }

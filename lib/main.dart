@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_products_app/routes/routes.dart';
-import 'package:flutter_products_app/services/products_services.dart';
+import 'package:flutter_products_app/services/services.dart';
 import 'package:provider/provider.dart';
 
 
@@ -15,7 +15,8 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: ( _ ) => ProductsService())
+        ChangeNotifierProvider(create: ( _ ) => ProductsService()),
+        ChangeNotifierProvider(create: ( _ ) => AuthService()),
       ],
       child: const MyApp(),
     );
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget
           title: const Text('Material App'),
         ),
       ),
-      initialRoute: 'home',
+      scaffoldMessengerKey: NotificationsService.messengerKey,
+      initialRoute: 'checking',
       routes: getRoutes(),
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.grey[300],

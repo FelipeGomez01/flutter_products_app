@@ -4,7 +4,7 @@ import 'package:flutter_products_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../models/models.dart';
-import '../services/products_services.dart';
+import '../services/services.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,12 +12,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productsService = Provider.of<ProductsService>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
 
     if(productsService.isLoading) return const LoadingScreen();
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Productos'),
+        leading: IconButton(
+          onPressed: (){
+            authService.logout();
+            Navigator.pushReplacementNamed(context, 'login');
+          },
+          icon: const Icon(Icons.login_outlined)
+        ),
       ),
       body: ListView.builder(
         itemCount: productsService.products.length,
